@@ -1,6 +1,7 @@
-#import <RCTAppDelegate.h>
 #import <Cocoa/Cocoa.h>
 
-@interface AppDelegate : RCTAppDelegate
+@interface AppDelegate : NSObject <NSApplicationDelegate>
+
+@property (nonatomic, strong) NSWindow *window;
 
 @end
