@@ -72,7 +72,7 @@ const Calculator: React.FC = () => {
       
       setDisplay(String(newValue));
       setPreviousValue(null);
-      setOperation(null);
+      setOperation(null);// reset the operation
       setWaitingForNewValue(true);
     }
   };
@@ -81,7 +81,7 @@ const Calculator: React.FC = () => {
   const handleClearPress = () => {
     setDisplay('0');
     setPreviousValue(null);
-    setOperation(null);
+    setOperation(null);// reset the operation
     setWaitingForNewValue(false);
   };
 

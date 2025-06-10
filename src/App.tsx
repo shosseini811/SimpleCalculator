@@ -14,10 +14,13 @@ import Calculator from './components/Calculator';
 // It's like a blueprint that tells React what to show on screen
 const App: React.FC = () => {
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="#000000" />
-      <Calculator />
-    </SafeAreaView>
+    <> {/* React Fragment to allow comment + element */}
+      {/* SafeAreaView adds automatic padding so content stays clear of notches, status bar, and home-indicator */}
+      <SafeAreaView style={styles.container}>
+        <StatusBar barStyle="light-content" backgroundColor="#000000" />
+        <Calculator />
+      </SafeAreaView>
+    </>
   );
 };
 
