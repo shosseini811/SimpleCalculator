@@ -1,0 +1,65 @@
+{
+  "buildCommand" : {
+    "command" : "build",
+    "skipDependencies" : false,
+    "style" : "buildOnly"
+  },
+  "configuredTargets" : [
+    {
+      "guid" : "c01f57da98f5c1bd087d26502d9fa20c551641ec9a8f97ea65b1a93c5eb6f4c9"
+    }
+  ],
+  "containerPath" : "/Users/soheilhosseini/SimpleCalculator/macos/SimpleCalculator.xcworkspace",
+  "continueBuildingAfterErrors" : false,
+  "dependencyScope" : "workspace",
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "build",
+    "activeArchitecture" : "arm64",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : false,
+      "platform" : "macosx",
+      "sdk" : "macosx15.5",
+      "sdkVariant" : "macos",
+      "supportedArchitectures" : [
+        "arm64e",
+        "arm64",
+        "x86_64"
+      ],
+      "targetArchitecture" : "arm64"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "/Users/soheilhosseini/SimpleCalculator/macos/build/Build/Intermediates.noindex",
+      "buildProductsPath" : "/Users/soheilhosseini/SimpleCalculator/macos/build/Build/Products",
+      "derivedDataPath" : "/Users/soheilhosseini/SimpleCalculator/macos/build",
+      "indexDataStoreFolderPath" : "/Users/soheilhosseini/SimpleCalculator/macos/build/Index.noindex/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/soheilhosseini/SimpleCalculator/macos/build/Index.noindex/PrecompiledHeaders",
+      "pchPath" : "/Users/soheilhosseini/SimpleCalculator/macos/build/Build/Intermediates.noindex/PrecompiledHeaders"
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "commandLine" : {
+        "table" : {
+
+        }
+      },
+      "synthesized" : {
+        "table" : {
+          "ACTION" : "build",
+          "COLOR_DIAGNOSTICS" : "YES",
+          "diagnostic_message_length" : "108",
+          "ENABLE_PREVIEWS" : "NO",
+          "ENABLE_XOJIT_PREVIEWS" : "YES"
+        }
+      }
+    }
+  },
+  "schemeCommand" : "launch",
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}
