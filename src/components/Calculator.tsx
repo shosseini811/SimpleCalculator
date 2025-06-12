@@ -11,9 +11,13 @@ import CalculatorButton from './CalculatorButton';
 const Calculator: React.FC = () => {
   // useState is a "hook" that lets us store data that can change
   // Think of it like a variable that the component remembers
+
+  // This line gives the display its initial value of "0"
   const [display, setDisplay] = useState('0'); // What shows on the screen
   const [previousValue, setPreviousValue] = useState<number | null>(null); // The last number entered
   const [operation, setOperation] = useState<string | null>(null); // What operation (+, -, etc.)
+
+  // this variable provides the same “type-over” versus “append” behavior you expect on a physical calculator after hitting +, -, ×, ÷, or =.
   const [waitingForNewValue, setWaitingForNewValue] = useState(false); // Are we waiting for a new number?
 
   // This function handles when someone presses a number button
@@ -32,11 +36,25 @@ const Calculator: React.FC = () => {
   const handleOperationPress = (nextOperation: string) => {
     const inputValue = parseFloat(display);
 
+    // First time an operator is pressed:
+    // - `previousValue` is still null, meaning no left-hand operand has
+    //   been stored yet.
+    // - We capture the number currently visible on the display
+    //   (`inputValue`) and put it into `previousValue` so that when the
+    //   user later types the second number and presses "=" (or another
+    //   operator) we can evaluate:
+    //       previousValue  <operator>  newNumber
+    //   Without this step the calculator would forget the first operand
+    //   and be unable to perform the calculation.
     if (previousValue === null) {
       // If this is the first operation, just store the current value
       setPreviousValue(inputValue);
     } else if (operation) {
       // If there's already an operation waiting, calculate the result
+      // previousValue is typed number | null.
+      // If previousValue already holds a number (most cases), currentValue just becomes that number.
+      // If for some reason previousValue is still null or undefined (e.g., the user hit an operator twice in a row before entering a number), 
+      // the logical-OR operator (||) falls back to 0.
       const currentValue = previousValue || 0;
       const newValue = calculate(currentValue, inputValue, operation);
       
@@ -72,8 +90,14 @@ const Calculator: React.FC = () => {
       
       setDisplay(String(newValue));
       setPreviousValue(null);
-      setOperation(null);// reset the operation
-      setWaitingForNewValue(true);
+      // Clear the stored operation so a new calculation chain
+      // starts with a clean state. If we leave the previous
+      // operator here, pressing "=" again or entering a new number
+      // could result in the old operator being unintentionally reused,
+      // and the guard `if (operation && previousValue !== null)` would
+      // fail, making the calculator appear unresponsive.
+      setOperation(null); // reset operator so the next calculation starts clean
+      setWaitingForNewValue(true); // next digit press will overwrite the result instead of appending
     }
   };
 
@@ -81,7 +105,9 @@ const Calculator: React.FC = () => {
   const handleClearPress = () => {
     setDisplay('0');
     setPreviousValue(null);
-    setOperation(null);// reset the operation
+    // Clear the pending operator for the same reason explained above:
+    // we don't want any stale operator affecting the next input.
+    setOperation(null); // ensure no leftover operator remains
     setWaitingForNewValue(false);
   };
 
@@ -112,6 +138,7 @@ const Calculator: React.FC = () => {
     <View style={styles.container}>
       {/* The display screen at the top */}
       <View style={styles.displayContainer}>
+        {/* The UI renders the `display` state here so the user sees the current input/result */}
         <Text style={styles.displayText}>{display}</Text>
       </View>
 

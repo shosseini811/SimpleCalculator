@@ -3,6 +3,7 @@
 A beautiful calculator app built with React Native and TypeScript, inspired by the macOS calculator design.
 
 ![Calculator on Web](calculator_on_web.png)
+<video src="Demo.mov" controls width="600"></video>
 
 ## Features
 
