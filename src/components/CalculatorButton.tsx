@@ -15,6 +15,7 @@ interface CalculatorButtonProps {
 }
 
 // Our button component
+// What React.FC<YourProps> gives you • Type-checks the component’s props: YourProps.
 const CalculatorButton: React.FC<CalculatorButtonProps> = ({
   title,
   onPress,
@@ -22,7 +23,10 @@ const CalculatorButton: React.FC<CalculatorButtonProps> = ({
   isWide = false, // Default to false if not specified
 }) => {
   // Choose the button style based on the type
+  //  the function dynamically composes the correct background color 
+  // and width for each button depending on its role.
   const getButtonStyle = () => {
+    // styles.button is the common “default” style object for every calculator key (padding, border-radius, etc.).
     const baseStyle: any[] = [styles.button];
     
     if (isWide) {
@@ -61,6 +65,10 @@ const CalculatorButton: React.FC<CalculatorButtonProps> = ({
       onPress={onPress}
       activeOpacity={0.7} // Makes button slightly transparent when pressed
     >
+      {/*
+        Render the button label.
+        - `title` is the text passed from the parent component (e.g., "7", "+", "AC").
+      */}
       <Text style={getTextStyle()}>{title}</Text>
     </TouchableOpacity>
   );

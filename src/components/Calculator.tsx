@@ -17,8 +17,10 @@ const Calculator: React.FC = () => {
   const [previousValue, setPreviousValue] = useState<number | null>(null); // The last number entered
   const [operation, setOperation] = useState<string | null>(null); // What operation (+, -, etc.)
 
-  // this variable provides the same “type-over” versus “append” behavior you expect on a physical calculator after hitting +, -, ×, ÷, or =.
-  const [waitingForNewValue, setWaitingForNewValue] = useState(false); // Are we waiting for a new number?
+  // `waitingForNewValue` acts like the "clear display on next digit" flag used by real calculators.
+  // true  -> the very next digit (or decimal) will REPLACE the current display, starting a fresh number.
+  // false -> the digit will be APPENDED to whatever is already on the display.
+  const [waitingForNewValue, setWaitingForNewValue] = useState(false);
 
   // This function handles when someone presses a number button
   const handleNumberPress = (num: string) => {
@@ -62,7 +64,7 @@ const Calculator: React.FC = () => {
       setPreviousValue(newValue);
     }
 
-    setWaitingForNewValue(true);
+    setWaitingForNewValue(true); // tell Calculator that the next digit should start a new number (clear display)
     setOperation(nextOperation);
   };
 
